@@ -1,0 +1,15 @@
+# XcodeBuildMCP configuration for Mów (macOS menu bar app)
+# See: https://github.com/getsentry/XcodeBuildMCP/blob/main/docs/CONFIGURATION.md
+#
+# To enable macOS build/run/test tools in Cursor, add to your MCP server env:
+#   XCODEBUILDMCP_ENABLED_WORKFLOWS: "session-management,simulator,macos,project-discovery"
+#
+schemaVersion: 1
+enabledWorkflows:
+  - session-management
+  - simulator
+  - macos
+  - project-discovery
+sessionDefaults:
+  scheme: mow
+  projectPath: ./mow/mow.xcodeproj

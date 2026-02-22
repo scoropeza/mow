@@ -1,0 +1,48 @@
+# Mise config for Mów — dev tools and tasks.
+
+min_version = "2026.2.18"
+
+# Load .env from project root when running in this directory (mise run, mise exec).
+# Use KEY=value format in .env; "export " prefix is shell-only and may be ignored by mise.
+[env]
+_.file = { path = ".env", redact = true }
+
+[tools]
+# Pin SwiftLint so local and CI use the same version (Xcode build phase runs swiftlint).
+swiftlint = "0.59.0"
+
+[tasks."build:release"]
+description = "Build the app for Release (matches CI)."
+run = "xcodebuild -project mow/mow.xcodeproj -scheme mow -configuration Release -derivedDataPath build clean build"
+
+[tasks.lint]
+description = "Run SwiftLint on app source (mow/)."
+run = "swiftlint lint --config .swiftlint.yml mow"
+
+[tasks.test]
+description = "Run tests on macOS (ad-hoc signing)."
+run = "xcodebuild test -project mow/mow.xcodeproj -scheme mow -derivedDataPath build -destination 'platform=macOS' -resultBundlePath build/TestResults.xcresult CODE_SIGN_IDENTITY=\"-\""
+
+[tasks.dmg]
+description = "Create DMG (run after exporting/notarizing; optional args: [path-to-Mow.app] [output.dmg])"
+run = "./scripts/build-dmg.sh build/Build/Products/Release/Mow.app"
+
+[tasks.notarize]
+description = "Notarize Mow.app (requires APPLE_ID, APPLE_APP_SPECIFIC_PASSWORD, TEAM_ID in env). Uses app from mise build if no path given."
+run = "./scripts/notarize.sh build/Build/Products/Release/Mow.app"
+
+[tasks."reset-permissions"]
+description = "Reset Microphone and Accessibility permissions for Mów (tccutil). Quit the app first, then run, then relaunch and grant when prompted."
+run = "./scripts/reset-permissions.sh"
+
+# ===============
+# FULL BUILD
+# ===============
+
+[tasks.full-build]
+description = "Complete build"
+run = [
+    { task = "build:release" },
+    { task = "notarize" },
+    { task = "dmg"}
+]

@@ -1,0 +1,11 @@
+---
+description: Use XcodeBuildMCP for all Xcode-related operations (build, run, test, discover).
+globs: ["**/*.swift", "**/*.xcodeproj/**", "**/*.xcworkspace/**"]
+---
+
+# XcodeBuildMCP for Mów
+
+- **Build operations**: Use XcodeBuildMCP only. Do **not** use raw `xcodebuild` or shell for build/run/test. Call **session_show_defaults** (then **session_set_defaults** if needed: `projectPath` = path to `mow.xcodeproj`, `scheme` = `mow`), then **build_macos** to build, **build_run_macos** to build and run, **test_macos** to test.
+- **Discovery**: Use **discover_projs** (workspace root = repo root) and **list_schemes** to find the project and scheme.
+- **macOS tools**: **build_macos**, **build_run_macos**, **test_macos**, **get_mac_app_path**, **launch_mac_app**, **stop_mac_app**. If these are not available, the `macos` workflow is disabled—tell the user to set in Cursor MCP env: `XCODEBUILDMCP_ENABLED_WORKFLOWS` = `session-management,simulator,macos,project-discovery`, then restart MCP/Cursor.
+- **Resources**: **xcodebuildmcp://doctor** (workflows, tools), **xcodebuildmcp://session-status**, **xcodebuildmcp://xcode-ide-state**.

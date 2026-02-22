@@ -1,0 +1,748 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		DD14F5E12F42AB2000ABB80C /* PatchFluidAudio */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = DD14F5E42F42AB2000ABB80C /* Build configuration list for PBXAggregateTarget "PatchFluidAudio" */;
+			buildPhases = (
+				DD14F5E52F42AB2000ABB80C /* Run Script */,
+			);
+			dependencies = (
+			);
+			name = PatchFluidAudio;
+			productName = PatchFluidAudio;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		DD14F5AA2F4288E400ABB80C /* LLM in Frameworks */ = {isa = PBXBuildFile; productRef = DD14F5A82F4288E400ABB80C /* LLM */; };
+		DD14F5CC2F42A97C00ABB80C /* FluidAudio in Frameworks */ = {isa = PBXBuildFile; productRef = DD14F5A42F4288E300ABB80C /* FluidAudio */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DD14F5862F4288E300ABB80C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD14F56E2F4288E100ABB80C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD14F5752F4288E100ABB80C;
+			remoteInfo = mow;
+		};
+		DD14F5902F4288E300ABB80C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD14F56E2F4288E100ABB80C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD14F5752F4288E100ABB80C;
+			remoteInfo = mow;
+		};
+		DD14F5E22F42AB2000ABB80C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD14F56E2F4288E100ABB80C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD14F5E12F42AB2000ABB80C;
+			remoteInfo = PatchFluidAudio;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DD14F5762F4288E100ABB80C /* Mow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD14F5852F4288E300ABB80C /* mowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD14F58F2F4288E300ABB80C /* mowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		DD14F5782F4288E100ABB80C /* mow */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = mow;
+			sourceTree = "<group>";
+		};
+		DD14F5882F4288E300ABB80C /* mowTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = mowTests;
+			sourceTree = "<group>";
+		};
+		DD14F5922F4288E300ABB80C /* mowUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = mowUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DD14F5732F4288E100ABB80C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD14F5CC2F42A97C00ABB80C /* FluidAudio in Frameworks */,
+				DD14F5AA2F4288E400ABB80C /* LLM in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD14F5822F4288E300ABB80C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD14F58C2F4288E300ABB80C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DD14F56D2F4288E100ABB80C = {
+			isa = PBXGroup;
+			children = (
+				DD14F5782F4288E100ABB80C /* mow */,
+				DD14F5882F4288E300ABB80C /* mowTests */,
+				DD14F5922F4288E300ABB80C /* mowUITests */,
+				DD14F5772F4288E100ABB80C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DD14F5772F4288E100ABB80C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DD14F5762F4288E100ABB80C /* Mow.app */,
+				DD14F5852F4288E300ABB80C /* mowTests.xctest */,
+				DD14F58F2F4288E300ABB80C /* mowUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DD14F5752F4288E100ABB80C /* mow */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD14F5992F4288E300ABB80C /* Build configuration list for PBXNativeTarget "mow" */;
+			buildPhases = (
+				DD14F5E02F42AB1000ABB80C /* Patch FluidAudio (type ambiguity) */,
+				DD14F5D02F42AB0000ABB80C /* Run SwiftLint */,
+				DD14F5722F4288E100ABB80C /* Sources */,
+				DD14F5732F4288E100ABB80C /* Frameworks */,
+				DD14F5742F4288E100ABB80C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DD14F5E32F42AB2000ABB80C /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				DD14F5782F4288E100ABB80C /* mow */,
+			);
+			name = mow;
+			packageProductDependencies = (
+				DD14F5A42F4288E300ABB80C /* FluidAudio */,
+				DD14F5A82F4288E400ABB80C /* LLM */,
+			);
+			productName = mow;
+			productReference = DD14F5762F4288E100ABB80C /* Mow.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DD14F5842F4288E300ABB80C /* mowTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD14F59C2F4288E300ABB80C /* Build configuration list for PBXNativeTarget "mowTests" */;
+			buildPhases = (
+				DD14F5812F4288E300ABB80C /* Sources */,
+				DD14F5822F4288E300ABB80C /* Frameworks */,
+				DD14F5832F4288E300ABB80C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DD14F5872F4288E300ABB80C /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				DD14F5882F4288E300ABB80C /* mowTests */,
+			);
+			name = mowTests;
+			packageProductDependencies = (
+			);
+			productName = mowTests;
+			productReference = DD14F5852F4288E300ABB80C /* mowTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DD14F58E2F4288E300ABB80C /* mowUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD14F59F2F4288E300ABB80C /* Build configuration list for PBXNativeTarget "mowUITests" */;
+			buildPhases = (
+				DD14F58B2F4288E300ABB80C /* Sources */,
+				DD14F58C2F4288E300ABB80C /* Frameworks */,
+				DD14F58D2F4288E300ABB80C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DD14F5912F4288E300ABB80C /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				DD14F5922F4288E300ABB80C /* mowUITests */,
+			);
+			name = mowUITests;
+			packageProductDependencies = (
+			);
+			productName = mowUITests;
+			productReference = DD14F58F2F4288E300ABB80C /* mowUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DD14F56E2F4288E100ABB80C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2620;
+				LastUpgradeCheck = 2620;
+				TargetAttributes = {
+					DD14F5752F4288E100ABB80C = {
+						CreatedOnToolsVersion = 26.2;
+					};
+					DD14F5842F4288E300ABB80C = {
+						CreatedOnToolsVersion = 26.2;
+						TestTargetID = DD14F5752F4288E100ABB80C;
+					};
+					DD14F58E2F4288E300ABB80C = {
+						CreatedOnToolsVersion = 26.2;
+						TestTargetID = DD14F5752F4288E100ABB80C;
+					};
+					DD14F5E12F42AB2000ABB80C = {
+						CreatedOnToolsVersion = 26.2;
+					};
+				};
+			};
+			buildConfigurationList = DD14F5712F4288E100ABB80C /* Build configuration list for PBXProject "mow" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DD14F56D2F4288E100ABB80C;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				DD14F5A22F4288E300ABB80C /* XCRemoteSwiftPackageReference "FluidAudio" */,
+				DD14F5A62F4288E400ABB80C /* XCRemoteSwiftPackageReference "LLM" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = DD14F5772F4288E100ABB80C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DD14F5E12F42AB2000ABB80C /* PatchFluidAudio */,
+				DD14F5752F4288E100ABB80C /* mow */,
+				DD14F5842F4288E300ABB80C /* mowTests */,
+				DD14F58E2F4288E300ABB80C /* mowUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DD14F5742F4288E100ABB80C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD14F5832F4288E300ABB80C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD14F58D2F4288E300ABB80C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DD14F5D02F42AB0000ABB80C /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if command -v swiftlint >/dev/null 2>&1; then\n  cd \"${SRCROOT}\" && swiftlint lint --config \"${SRCROOT}/../.swiftlint.yml\" \"mow\"\nelse\n  echo \"warning: SwiftLint not installed (brew install swiftlint)\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DD14F5E02F42AB1000ABB80C /* Patch FluidAudio (type ambiguity) */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Patch FluidAudio (type ambiguity)";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Fix FluidAudio Qwen3AsrModels.swift ambiguous type (Swift 6 / newer compiler)\n# Patches the SPM checkout so \"let f16Ptr = ...\" gets an explicit type.\nROOT=\"${BUILD_DIR}\"\nfor _ in 1 2 3 4 5 6 7 8; do\n  [ -d \"${ROOT}/SourcePackages/checkouts/FluidAudio\" ] && break\n  ROOT=\"$(dirname \"$ROOT\")\"\ndone\nFILE=\"${ROOT}/SourcePackages/checkouts/FluidAudio/Sources/FluidAudio/ASR/Qwen3/Qwen3AsrModels.swift\"\nif [ -f \"$FILE\" ]; then\n  if ! grep -q 'let f16Ptr: UnsafePointer<Float16>' \"$FILE\"; then\n    sed -i.bak 's/let f16Ptr = ptr\\.baseAddress!/let f16Ptr: UnsafePointer<Float16> = ptr.baseAddress!/g' \"$FILE\" && rm -f \"${FILE}.bak\"\n    echo \"Patched FluidAudio Qwen3AsrModels.swift\"\n  fi\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DD14F5E52F42AB2000ABB80C /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PROJECT_DIR}/../scripts/patch-fluidaudio.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DD14F5722F4288E100ABB80C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD14F5812F4288E300ABB80C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DD14F58B2F4288E300ABB80C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DD14F5872F4288E300ABB80C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD14F5752F4288E100ABB80C /* mow */;
+			targetProxy = DD14F5862F4288E300ABB80C /* PBXContainerItemProxy */;
+		};
+		DD14F5912F4288E300ABB80C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD14F5752F4288E100ABB80C /* mow */;
+			targetProxy = DD14F5902F4288E300ABB80C /* PBXContainerItemProxy */;
+		};
+		DD14F5E32F42AB2000ABB80C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD14F5E12F42AB2000ABB80C /* PatchFluidAudio */;
+			targetProxy = DD14F5E22F42AB2000ABB80C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		DD14F5972F4288E300ABB80C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DD14F5982F4288E300ABB80C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		DD14F59A2F4288E300ABB80C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = mow_icon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = mow/mow.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YHJ93DN9M3;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Mów";
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Mów uses the microphone for voice-to-text dictation. Audio is processed entirely on-device.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.daedalus-labs.mow";
+				PRODUCT_NAME = Mow;
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		DD14F59B2F4288E300ABB80C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = mow_icon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = mow/mow.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YHJ93DN9M3;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Mów";
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Mów uses the microphone for voice-to-text dictation. Audio is processed entirely on-device.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.daedalus-labs.mow";
+				PRODUCT_NAME = Mow;
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		DD14F59D2F4288E300ABB80C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.daedalus-labs.mowTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mow.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/mow";
+			};
+			name = Debug;
+		};
+		DD14F59E2F4288E300ABB80C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.daedalus-labs.mowTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mow.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/mow";
+			};
+			name = Release;
+		};
+		DD14F5A02F4288E300ABB80C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.daedalus-labs.mowUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = mow;
+			};
+			name = Debug;
+		};
+		DD14F5A12F4288E300ABB80C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.daedalus-labs.mowUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = mow;
+			};
+			name = Release;
+		};
+		DD14F5E62F42AB2000ABB80C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+			};
+			name = Debug;
+		};
+		DD14F5E72F42AB2000ABB80C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DD14F5712F4288E100ABB80C /* Build configuration list for PBXProject "mow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD14F5972F4288E300ABB80C /* Debug */,
+				DD14F5982F4288E300ABB80C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD14F5992F4288E300ABB80C /* Build configuration list for PBXNativeTarget "mow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD14F59A2F4288E300ABB80C /* Debug */,
+				DD14F59B2F4288E300ABB80C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD14F59C2F4288E300ABB80C /* Build configuration list for PBXNativeTarget "mowTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD14F59D2F4288E300ABB80C /* Debug */,
+				DD14F59E2F4288E300ABB80C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD14F59F2F4288E300ABB80C /* Build configuration list for PBXNativeTarget "mowUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD14F5A02F4288E300ABB80C /* Debug */,
+				DD14F5A12F4288E300ABB80C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD14F5E42F42AB2000ABB80C /* Build configuration list for PBXAggregateTarget "PatchFluidAudio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD14F5E62F42AB2000ABB80C /* Debug */,
+				DD14F5E72F42AB2000ABB80C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DD14F5A22F4288E300ABB80C /* XCRemoteSwiftPackageReference "FluidAudio" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/FluidInference/FluidAudio.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.7.9;
+			};
+		};
+		DD14F5A62F4288E400ABB80C /* XCRemoteSwiftPackageReference "LLM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/eastriverlee/LLM.swift";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DD14F5A42F4288E300ABB80C /* FluidAudio */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD14F5A22F4288E300ABB80C /* XCRemoteSwiftPackageReference "FluidAudio" */;
+			productName = FluidAudio;
+		};
+		DD14F5A82F4288E400ABB80C /* LLM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD14F5A62F4288E400ABB80C /* XCRemoteSwiftPackageReference "LLM" */;
+			productName = LLM;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = DD14F56E2F4288E100ABB80C /* Project object */;
+}

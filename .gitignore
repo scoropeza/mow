@@ -1,0 +1,18 @@
+# Local env (secrets, paths) – never commit
+.env
+.env.*
+!.env.example
+
+xcuserdata/*
+xcuserdata
+
+!xcshareddata
+build/
+
+*.hmap
+
+DerivedData/
+
+.DS_Store
+
+*.dmg

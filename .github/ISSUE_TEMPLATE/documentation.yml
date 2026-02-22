@@ -1,0 +1,58 @@
+name: Documentation
+description: Suggest or report issues with docs, README, or in-app help
+title: "[Docs]: "
+labels: ["documentation"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Help us improve Mów's documentation. What's wrong or missing?
+  - type: checkboxes
+    id: issue-type
+    attributes:
+      label: What's the documentation issue?
+      description: Select all that apply
+      options:
+        - label: Unclear or missing instructions
+          required: false
+        - label: Outdated information
+          required: false
+        - label: Typo or formatting
+          required: false
+        - label: Other (describe below)
+          required: false
+    validations:
+      required: false
+  - type: input
+    id: location
+    attributes:
+      label: Where is it?
+      description: e.g. README, CONTRIBUTING.md, docs/RELEASE.md, in-app Settings
+      placeholder: README / docs/RELEASE.md / ...
+    validations:
+      required: true
+  - type: input
+    id: section
+    attributes:
+      label: Section or page
+      description: If applicable
+      placeholder: e.g. "Installation" or "Step 2"
+    validations:
+      required: false
+  - type: textarea
+    id: change
+    attributes:
+      label: What should change?
+      description: Describe the change. For typos or small fixes, paste the corrected text.
+      placeholder: The docs should say... / Here's the fix...
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Screenshots, links, or other details
+      placeholder: Any other context that helps
+    validations:
+      required: false

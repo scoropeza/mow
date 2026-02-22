@@ -1,0 +1,80 @@
+name: Bug report
+description: Report a bug or unexpected behavior in Mów
+title: "[Bug]: "
+labels: ["bug"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug. Please fill out the sections below.
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear, concise description of what the bug is
+      placeholder: What went wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: To reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Do '...'
+        3. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What you expected to happen
+      placeholder: I expected...
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What actually happened
+      placeholder: Instead I see...
+    validations:
+      required: true
+  - type: input
+    id: macos-version
+    attributes:
+      label: macOS version
+      description: e.g. 14.2.1
+      placeholder: "14.2.1"
+    validations:
+      required: true
+  - type: input
+    id: mow-version
+    attributes:
+      label: Mów version
+      description: From About, or build/commit if unreleased
+      placeholder: e.g. 1.0.0 or main@abc1234
+    validations:
+      required: false
+  - type: dropdown
+    id: architecture
+    attributes:
+      label: Architecture
+      description: Your Mac's architecture
+      options:
+        - Apple Silicon
+        - Intel
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Logs, screenshots, or Console.app output when reproducing
+      placeholder: Paste any relevant logs or describe what you see
+      render: shell
+    validations:
+      required: false
