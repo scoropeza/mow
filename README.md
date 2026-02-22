@@ -6,7 +6,7 @@
   <br />
 
   <strong>
-    Free and open source Voice-to-text app for MacOS
+    Free and open source voice-to-text app for MacOS
   </strong>
  
   <br />
