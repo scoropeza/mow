@@ -118,10 +118,7 @@ Mów follows a "Transparent & Empowering" philosophy, giving you control and cus
 
 ## Dependencies
 
-Mów relies on the following dependencies:
-
-- [LLM.Swift](https://github.com/eastriverlee/LLM.swift)
-- [FluidAudio](https://github.com/FluidInference/FluidAudio)
+To see all dependencies used by Mów and their licenses, please refer to the dedicated [documentation](./docs/THIRD_PARTY_LICENSES.md).
 
 ## 🙌 Contributing
 
