@@ -2,7 +2,7 @@
 //  mowUITests.swift
 //  mowUITests
 //
-//  Created by alain krok on 2/15/26.
+//  Created by The Mów Authors on 2/15/26.
 //
 
 import XCTest

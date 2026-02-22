@@ -1,5 +1,5 @@
 #!/bin/bash
-# Create a DMG for distribution (task 14.3).
+# Create a DMG for distribution.
 # Run after exporting and notarizing Mow.app (see docs/RELEASE.md).
 #
 # If you see "Operation not permitted" from hdiutil, run this script (or: mise run dmg)

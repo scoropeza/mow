@@ -1,5 +1,5 @@
 #!/bin/bash
-# Notarize Mow.app for distribution (task 14.2).
+# Notarize Mow.app for distribution.
 # Submit the app to Apple, wait for approval, then staple the notarization ticket.
 #
 # Prerequisites:

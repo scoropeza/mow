@@ -36,7 +36,7 @@ struct AboutMowView: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
 
-            Text("© 2025")
+            Text("© 2026")
                 .font(.caption)
                 .foregroundStyle(.tertiary)
         }
