@@ -4,7 +4,7 @@ This guide explains how to use Mów for voice-to-text dictation on your Mac.
 
 ## What is Mów?
 
-Mów (pronounced like “moo”) is a **menu-bar-only** voice-to-text app for macOS. It runs entirely **on your Mac**—no cloud, no subscriptions, no data sent elsewhere. You press a keyboard shortcut, speak, and the transcribed (and optionally cleaned) text is inserted where your cursor is.
+Mów (pronounced like `/ˈmuf/`) is a **menu-bar-only** voice-to-text app for macOS. It runs entirely **on your Mac**—no cloud, no subscriptions, no data sent elsewhere. You press a keyboard shortcut, speak, and the transcribed (and optionally cleaned) text is inserted where your cursor is.
 
 - **Menu bar only** — No Dock icon; everything is controlled from the **Mów icon in the top menu bar**.
 - **Press-and-hold to record** — Default shortcut is **⌥ Option + M**: hold to record, release to stop. The text is then processed and inserted.
@@ -16,8 +16,10 @@ Mów (pronounced like “moo”) is a **menu-bar-only** voice-to-text app for ma
 
 ### 1. Install
 
-- Download the latest **Mow.app** (or DMG) from [Releases](https://github.com/krokoko/mow/releases).
-- Drag **Mow.app** into **Applications** (recommended).
+- Download the latest DMG from [Releases](https://github.com/krokoko/mow/releases).
+- Open the DMG and drag **Mow.app** into **Applications** (recommended).
+
+![](../imgs/dmg.png)
 
 ### 2. Permissions
 
@@ -29,6 +31,8 @@ Mów needs two macOS permissions. The app **does not request them automatically*
 | **Accessibility** | To type the transcribed text into the active app (e.g. Notes, Mail, browser). |
 
 The menu bar dot is **purple** until both are granted. Then it turns yellow (loading models) and finally green (ready).
+
+![](../imgs/purple.png)
 
 Microphone permissions settings:
 
@@ -65,7 +69,7 @@ Accessibility permissions granted:
 1. **Open any app** where you can type (Notes, Mail, Slack, browser, etc.) and put the **cursor** where you want text to appear.
 2. **Press and hold** the dictation shortcut (default: **⌥ Option + M**). The microphone icon will appear in the menu bar.
 3. **Speak** while holding the key.
-4. **Release** the key when you finish (maintain the option key pressed). Mów will:
+4. **Release** the key when you finish (maintain the ⌥ Option key pressed). Mów will:
    - Stop recording
    - Run speech-to-text
    - Optionally clean the text (remove fillers like “um”, “uh”)
