@@ -15,6 +15,13 @@ swiftlint = "0.59.0"
 description = "Build the app for Release (matches CI)."
 run = "xcodebuild -project mow/mow.xcodeproj -scheme mow -configuration Release -derivedDataPath build clean build"
 
+[tasks."build:dev"]
+description = "Build and ad-hoc sign for local development (no Developer ID needed)."
+run = [
+    "xcodebuild -project mow/mow.xcodeproj -scheme mow -configuration Release -derivedDataPath build clean build -skipMacroValidation -skipPackagePluginValidation CODE_SIGN_IDENTITY=\"-\"",
+    "./scripts/sign-for-dev.sh"
+]
+
 [tasks.lint]
 description = "Run SwiftLint on app source (mow/)."
 run = "swiftlint lint --config .swiftlint.yml mow"

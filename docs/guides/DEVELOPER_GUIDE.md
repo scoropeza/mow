@@ -32,6 +32,58 @@ This guide covers how to build, sign, and distribute Mów locally and how that d
 
 ---
 
+## Understanding code signing on macOS
+
+macOS requires every app to be **code signed** before it can run. Code signing is how the OS verifies that an app hasn't been tampered with and decides what permissions (microphone, accessibility, network) to grant it.
+
+There are three levels of signing:
+
+| Level | Who can use it | What it means |
+|-------|---------------|---------------|
+| **Ad-hoc** (`-`) | Anyone | "I built this on my machine." Works only on the Mac that built it. Free, no Apple account needed. |
+| **Developer ID** | Paid Apple Developer Program members ($99/yr) | "Apple trusts this developer." Required to distribute apps to other people outside the App Store. Enables notarization (Apple's malware scan). |
+| **App Store** | Apple-reviewed apps | Distributed and reviewed through the Mac App Store. |
+
+**Why this matters for contributors:** Mów's release builds are signed with the project owner's Developer ID certificate. If you're building from source and don't have that certificate, `mise run build:dev` uses **ad-hoc signing** with adjusted entitlements so the app works on your Mac.
+
+**What is the App Sandbox?** macOS apps can opt into a "sandbox" that restricts what the app can access (files, network, hardware). The sandbox requires a real signing certificate to enforce properly. Dev builds disable the sandbox since ad-hoc signing can't support it. This is safe for local development — the sandbox is a distribution-time security feature, not a development requirement.
+
+**What is Library Validation?** macOS checks that all frameworks inside an app (like `llama.framework` from LLM.swift) are signed by the same developer. With ad-hoc signing, each framework gets its own independent signature, so Library Validation rejects them. Dev builds disable this check so all embedded frameworks can load.
+
+---
+
+## Building without Developer ID (contributors)
+
+If you don't have a Developer ID certificate, use the dev build task:
+
+```bash
+mise run build:dev
+```
+
+This single command:
+1. Builds the app for Release (same as `build:release`)
+2. Re-signs all embedded frameworks with a consistent ad-hoc identity
+3. Re-signs the main app with dev entitlements (sandbox disabled, library validation disabled)
+
+Output: `build/Build/Products/Release/Mow.app`
+
+Launch the app:
+
+```bash
+open build/Build/Products/Release/Mow.app
+```
+
+> **Important — permissions after rebuild:** Every clean build produces a new ad-hoc signature, and macOS ties permissions to the signature. After each `build:dev`, you will need to re-grant **Accessibility** (and possibly **Microphone**) permissions:
+>
+> 1. Open **System Settings → Privacy & Security → Accessibility**
+> 2. Remove the old Mow entry (select it, click `−`)
+> 3. Click `+` and add `build/Build/Products/Release/Mow.app`
+> 4. Toggle it **on**, then restart the app
+>
+> See [Permissions and new builds](#permissions-and-new-builds) for more details and troubleshooting.
+
+---
+
 ## Steps to run (local)
 
 ### 1. Build for Release
@@ -101,6 +153,7 @@ By default this uses `build/Build/Products/Release/Mow.app` and writes e.g. `mow
 | Task | Command | Description |
 |------|---------|-------------|
 | Build Release | `mise run build:release` | Build app for Release into `build/` (matches CI layout). |
+| Build Dev | `mise run build:dev` | Build and ad-hoc sign for local development (no Developer ID needed). |
 | Notarize | `mise run notarize` | Notarize `build/.../Mow.app`. Optionally re-signs if `CODESIGN_IDENTITY` is set. |
 | DMG | `mise run dmg` | Create DMG from built (or given) Mow.app. |
 | Reset permissions | `mise run reset-permissions` | Reset Microphone and Accessibility for Mów (quit app first, then relaunch and grant). |

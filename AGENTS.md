@@ -17,6 +17,7 @@ Run these from the **repository root** (`/Users/krokou/mow` or project root).
 |--------|--------|
 | **Full Build** | `mise run full-build` — build + lint + notarize + dmg` |
 | **Build (Release)** | `mise run build:release` — builds into `build/Build/Products/Release/Mow.app` |
+| **Build (Dev)** | `mise run build:dev` — ad-hoc signed build for local development without Developer ID |
 | **Lint** | `mise run lint` |
 | **Test** | `mise run test` |
 | **DMG** | `mise run dmg` (after building; optional args: `[path-to-Mow.app] [output.dmg]`) |
