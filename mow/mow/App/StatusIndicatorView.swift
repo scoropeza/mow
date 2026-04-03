@@ -11,21 +11,25 @@ import SwiftUI
 
 struct StatusIndicatorView: View {
     let status: AppStatus
+    let isRecording: Bool
 
     var body: some View {
-        Image(systemName: "circle.fill")
-            .font(.system(size: 8, weight: .medium))
+        Image(systemName: isRecording ? "record.circle.fill" : "circle.fill")
+            .font(.system(size: isRecording ? 12 : 8, weight: .medium))
             .symbolRenderingMode(.palette)
-            .foregroundStyle(status.color)
+            .foregroundStyle(isRecording ? .red : status.color)
     }
 }
 
-/// Menu bar label: purple when permissions needed, yellow loading, green ready, red error.
+/// Menu bar label: colored dot when idle, red record icon while recording.
 struct MenuBarStatusIcon: View {
     @Bindable var statusManager: StatusManager
 
     var body: some View {
-        StatusIndicatorView(status: statusManager.status)
+        StatusIndicatorView(
+            status: statusManager.status,
+            isRecording: statusManager.isRecording
+        )
     }
 }
 
