@@ -11,6 +11,8 @@ import SwiftUI
 final class StatusManager {
     var status: AppStatus = .permissionsNeeded
     var isRecording: Bool = false
+    /// When non-nil, the menu bar shows this text (e.g. "✓ 1.2s") instead of the dot icon.
+    var latencyText: String?
 
     func setPermissionsNeeded() {
         status = .permissionsNeeded
@@ -45,5 +47,15 @@ final class StatusManager {
 
     func stopRecording() {
         isRecording = false
+    }
+
+    /// Briefly show latency in the menu bar, then revert to the dot after 3 seconds.
+    func showLatency(_ seconds: Double) {
+        guard DictationLatencySettings.isEnabled else { return }
+        latencyText = String(format: "✓ %.1fs", seconds)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { [weak self] in
+            guard let self else { return }
+            self.latencyText = nil
+        }
     }
 }

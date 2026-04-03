@@ -21,15 +21,22 @@ struct StatusIndicatorView: View {
     }
 }
 
-/// Menu bar label: colored dot when idle, red record icon while recording.
+/// Menu bar label: colored dot when idle, red record icon while recording,
+/// latency text (e.g. "✓ 1.2s") briefly after dictation when developer flag is on.
 struct MenuBarStatusIcon: View {
     @Bindable var statusManager: StatusManager
 
     var body: some View {
-        StatusIndicatorView(
-            status: statusManager.status,
-            isRecording: statusManager.isRecording
-        )
+        if let latency = statusManager.latencyText {
+            Text(latency)
+                .font(.system(size: 10, weight: .medium, design: .monospaced))
+                .foregroundStyle(.green)
+        } else {
+            StatusIndicatorView(
+                status: statusManager.status,
+                isRecording: statusManager.isRecording
+            )
+        }
     }
 }
 

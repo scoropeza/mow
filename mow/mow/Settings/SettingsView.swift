@@ -16,6 +16,7 @@ struct SettingsView: View {
     @State private var micStatus: String = ""
     @State private var showMicResetHint: Bool = false
     @State private var accessibilityStatus: String = ""
+    @State private var showDictationLatency: Bool = DictationLatencySettings.isEnabled
 
     var body: some View {
         Form {
@@ -108,6 +109,16 @@ struct SettingsView: View {
                     openWindow(id: "logs")
                 }
                 Text("View last transcription and any errors.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            Section("Developer") {
+                Toggle("Show dictation latency", isOn: $showDictationLatency)
+                    .onChange(of: showDictationLatency) { _, new in
+                        DictationLatencySettings.isEnabled = new
+                    }
+                Text("Briefly show total latency (e.g. ✓ 1.2s) in the menu bar after each dictation. "
+                    + "Timing breakdown is always logged regardless of this setting.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }

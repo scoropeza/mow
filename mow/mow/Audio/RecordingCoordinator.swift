@@ -151,16 +151,24 @@ final class RecordingCoordinator {
         let target = injectionTarget
         Task {
             await MainActor.run { self.statusManager?.setLoading() }
+            let pipelineStart = CFAbsoluteTimeGetCurrent()
             do {
+                let sttStart = CFAbsoluteTimeGetCurrent()
                 let rawText = try await service.transcribe(samples: samples)
+                let sttElapsed = CFAbsoluteTimeGetCurrent() - sttStart
+
                 let text: String
+                var slmElapsed: Double = 0
                 if rawText.isEmpty {
                     text = ""
                 } else if let cleaner = textCleaningService {
+                    let slmStart = CFAbsoluteTimeGetCurrent()
                     text = await cleaner.clean(rawText: rawText)
+                    slmElapsed = CFAbsoluteTimeGetCurrent() - slmStart
                 } else {
                     text = rawText
                 }
+                let totalElapsed = CFAbsoluteTimeGetCurrent() - pipelineStart
                 await MainActor.run {
                     if text.isEmpty {
                         audioLog.debug("Transcription empty")
@@ -176,8 +184,10 @@ final class RecordingCoordinator {
                         } else {
                             _ = TextInjectionService.inject(textForUser, target: target)
                             self.statusManager?.setReady()
+                            self.statusManager?.showLatency(totalElapsed)
                         }
                     }
+                    self.logTimingBreakdown(stt: sttElapsed, slm: slmElapsed, total: totalElapsed)
                     self.injectionTarget = nil
                     self.logDictationLatencyIfNeeded()
                 }
@@ -192,6 +202,16 @@ final class RecordingCoordinator {
                 }
             }
         }
+    }
+
+    /// Log timing breakdown to the persistent log file (always) and os.log (always).
+    private func logTimingBreakdown(stt: Double, slm: Double, total: Double) {
+        let sttStr = String(format: "%.2f", stt)
+        let slmStr = String(format: "%.2f", slm)
+        let totalStr = String(format: "%.2f", total)
+        let breakdown = "Latency: \(totalStr)s total (STT \(sttStr)s + clean \(slmStr)s)"
+        modelLog.info("\(breakdown)")
+        LogFileManager.append("[timing] \(breakdown)")
     }
 
     /// Log time from shortcut release to text injected (or error). Optional benchmark (task 13.4).
