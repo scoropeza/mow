@@ -20,6 +20,8 @@ final class RecordingCoordinator {
     private var shortcutMonitorStarted = false
     /// Time when shortcut was released (for optional latency benchmark, task 13.4).
     private var shortcutUpTimestamp: CFAbsoluteTime = 0
+    /// The app and focused element when recording stopped, so we can inject text back to the right place.
+    private var injectionTarget: InjectionTarget?
 
     func setStatusManager(_ manager: StatusManager) {
         statusManager = manager
@@ -112,6 +114,8 @@ final class RecordingCoordinator {
             completion([])
             return
         }
+        // Capture the frontmost app and focused element NOW, before transcription shifts focus.
+        injectionTarget = InjectionTarget.capture()
         statusManager?.stopRecording()
         audioCapture.stopCaptureBuffered { [weak self] samples in
             if !samples.isEmpty {
@@ -144,6 +148,7 @@ final class RecordingCoordinator {
             audioLog.debug("STT not ready, skipping transcription")
             return
         }
+        let target = injectionTarget
         Task {
             await MainActor.run { self.statusManager?.setLoading() }
             do {
@@ -169,10 +174,11 @@ final class RecordingCoordinator {
                             AppErrorState.set(AccessibilityPermission.instructionsWhenDenied)
                             self.statusManager?.setError()
                         } else {
-                            _ = TextInjectionService.inject(textForUser)
+                            _ = TextInjectionService.inject(textForUser, target: target)
                             self.statusManager?.setReady()
                         }
                     }
+                    self.injectionTarget = nil
                     self.logDictationLatencyIfNeeded()
                 }
             } catch {
@@ -180,6 +186,7 @@ final class RecordingCoordinator {
                     errorLog.error("STT inference failed: \(error.localizedDescription)")
                     appLog.error("STT failed: \(error.localizedDescription)")
                     AppErrorState.set("Transcription: \(error.localizedDescription)")
+                    self.injectionTarget = nil
                     self.statusManager?.setTransientError()
                     self.logDictationLatencyIfNeeded()
                 }
