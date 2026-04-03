@@ -162,9 +162,9 @@ struct ModelManagementView: View {
 
     /// Hugging Face model repo page URL. Cache names are often filenames; we link to the repo page, not the file.
     private func huggingFaceURL(for cacheName: String) -> URL? {
-        // Default SLM is unsloth/Qwen3-0.6B-GGUF — link to the model page, not a file path.
-        if cacheName.contains("Qwen3-0.6B") || cacheName.contains("unsloth") {
-            return URL(string: "https://huggingface.co/unsloth/Qwen3-0.6B-GGUF")
+        // Default SLM is unsloth/SmolLM2-1.7B-Instruct-GGUF — link to the model page, not a file path.
+        if cacheName.contains("SmolLM2") || cacheName.contains("unsloth") {
+            return URL(string: "https://huggingface.co/unsloth/SmolLM2-1.7B-Instruct-GGUF")
         }
         // Other models: try org--model style folder names.
         let modelId = cacheName.replacingOccurrences(of: "--", with: "/")

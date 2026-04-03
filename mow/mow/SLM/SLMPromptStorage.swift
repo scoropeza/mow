@@ -10,9 +10,8 @@ import Foundation
 enum SLMPromptStorage {
     private static let key = "slmSystemPrompt"
 
-    /// Default system prompt used when none is saved. /no_think asks Qwen3 to skip <think> blocks.
+    /// Default system prompt used when none is saved.
     static let defaultPrompt = """
-    /no_think
     You are a text cleaner. Remove filler words (um, uh, er, ah, like), disfluencies, repeated words, \
     and hesitation markers from the user's transcript. Output only the cleaned text, nothing else. \
     Do not add punctuation or change the meaning.

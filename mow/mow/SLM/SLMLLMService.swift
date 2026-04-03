@@ -10,8 +10,9 @@ import Foundation
 import LLM
 import os
 
-/// Hugging Face model used for text cleaning. Small model for low latency.
-private let slmModelID = "unsloth/Qwen3-0.6B-GGUF"
+/// Hugging Face model used for text cleaning. SmolLM2-1.7B: best instruction-following
+/// in its size class (IFEval 56.7), no thinking mode, ~450ms on M1.
+private let slmModelID = "unsloth/SmolLM2-1.7B-Instruct-GGUF"
 
 /// Thread-safe state for SLM (avoids NSLock from async contexts; Swift 6).
 private actor SLMLLMState {

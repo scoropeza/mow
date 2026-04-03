@@ -51,7 +51,7 @@ enum ModelStorage {
     }
 
     /// Default SLM model ID used by the app (for display in Model Management). Matches SLMLLMService.
-    static let defaultSLMModelID = "unsloth/Qwen3-0.6B-GGUF"
+    static let defaultSLMModelID = "unsloth/SmolLM2-1.7B-Instruct-GGUF"
 
     /// Ensures the root and model subdirectories exist. Call at startup before downloading or loading models.
     static func createDirectoriesIfNeeded() throws {
