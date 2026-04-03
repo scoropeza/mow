@@ -28,8 +28,18 @@ final class StatusManager {
         status = .error
     }
 
+    /// Set warning status (orange dot) that automatically recovers to ready after a delay.
+    /// Use for transient issues (short recording, quiet audio, STT failure) where the user can retry.
+    func setTransientError() {
+        status = .warning
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
+            guard let self, self.status == .warning else { return }
+            self.status = .ready
+        }
+    }
+
     func startRecording() {
-        guard status == .ready else { return }
+        guard status == .ready || status == .warning else { return }
         isRecording = true
     }
 

@@ -18,22 +18,28 @@ struct MenuBarMenuView: View {
     var body: some View {
         Group {
             Button("Settings") {
+                NSApp.activate(ignoringOtherApps: true)
                 openWindow(id: "settings")
             }
 
             Button("Model Management") {
+                NSApp.activate(ignoringOtherApps: true)
                 openWindow(id: "modelManagement")
             }
 
             if statusManager.status.isError {
                 Button("View Logs") {
+                    NSApp.activate(ignoringOtherApps: true)
                     openWindow(id: "logs")
                 }
             }
 
             Divider()
 
-            Button("About Mów", action: showAbout)
+            Button("About Mów") {
+                NSApp.activate(ignoringOtherApps: true)
+                openWindow(id: "about")
+            }
 
             Button("Quit Mów") {
                 NSApplication.shared.terminate(nil)
@@ -62,7 +68,4 @@ struct MenuBarMenuView: View {
         }
     }
 
-    private func showAbout() {
-        openWindow(id: "about")
-    }
 }

@@ -13,11 +13,17 @@ swiftlint = "0.59.0"
 
 [tasks."build:release"]
 description = "Build the app for Release (matches CI)."
-run = "xcodebuild -project mow/mow.xcodeproj -scheme mow -configuration Release -derivedDataPath build clean build"
+run = [
+    "xcodebuild -project mow/mow.xcodeproj -scheme mow -configuration Release -derivedDataPath build -resolvePackageDependencies",
+    "DERIVED=build ./scripts/patch-llm-swift.sh",
+    "xcodebuild -project mow/mow.xcodeproj -scheme mow -configuration Release -derivedDataPath build build"
+]
 
 [tasks."build:dev"]
 description = "Build and ad-hoc sign for local development (no Developer ID needed)."
 run = [
+    "xcodebuild -project mow/mow.xcodeproj -scheme mow -configuration Release -derivedDataPath build -resolvePackageDependencies -skipMacroValidation -skipPackagePluginValidation",
+    "DERIVED=build ./scripts/patch-llm-swift.sh",
     "xcodebuild -project mow/mow.xcodeproj -scheme mow -configuration Release -derivedDataPath build clean build -skipMacroValidation -skipPackagePluginValidation CODE_SIGN_IDENTITY=\"-\"",
     "./scripts/sign-for-dev.sh"
 ]

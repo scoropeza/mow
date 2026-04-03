@@ -214,6 +214,26 @@ If you use a custom Derived Data path (e.g. project-relative `build/`), use that
 
 ---
 
+## Known dependency patches
+
+The build applies patches to two SPM dependencies before compilation. These run automatically in both `mise run build:dev` / `mise run build:release` and CI. The patches are re-applied each build because SPM can re-checkout sources on package resolution.
+
+### FluidAudio — Swift 6 type inference (`scripts/patch-fluidaudio.sh`)
+
+FluidAudio's `Qwen3AsrModels.swift` uses type inference patterns that fail under Swift 6's stricter rules. The patch adds explicit type annotations. Tracked upstream but not yet released.
+
+### LLM.swift — HuggingFace download regex (`scripts/patch-llm-swift.sh`)
+
+`LLM.swift`'s `HuggingFaceModel.getDownloadURLStrings()` uses a greedy regex (`.*`) to scrape `.gguf` download links from HuggingFace repo pages. On minified HTML (where multiple `href="..."` attributes appear on the same line), the greedy `.*` matches across attribute boundaries, producing an incorrect URL (e.g. `https://huggingface.co/models` instead of the actual `.gguf` file). The downloaded file ends up being an HTML page, and `llama_model_load_from_file` returns nil.
+
+**Fix:** The patch changes `.*` to `[^"]*` in the regex so the match stays within a single `href` attribute value. This is a one-line change in `Sources/LLM/LLM.swift` (line ~1822).
+
+**Upstream:** [`eastriverlee/LLM.swift`](https://github.com/eastriverlee/LLM.swift). A PR with this fix has not been submitted yet. Remove this patch once the upstream library is updated.
+
+**Symptom if patch is missing:** The SLM (text cleaning model) fails to load at startup with "LLM init returned nil", and a 205KB HTML file named `models` appears in `~/Library/Caches/Mow/SLM/` instead of the ~400MB `.gguf` model. The app falls back to rule-based text cleaning and shows a red dot briefly at launch.
+
+---
+
 ## See also
 
 - [Release checklist (GitHub & manual)](./RELEASE.md) – Tag-based releases, secrets, manual export/notarize/DMG.

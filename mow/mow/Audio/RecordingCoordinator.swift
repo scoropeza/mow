@@ -66,7 +66,8 @@ final class RecordingCoordinator {
 
     /// Start recording (from menu or shortcut). Checks mic permission and status; accumulates until stop.
     func startRecording() {
-        guard let statusManager = statusManager, statusManager.status == .ready else {
+        guard let statusManager = statusManager,
+              statusManager.status == .ready || statusManager.status == .warning else {
             audioLog.debug("Ignoring start: status not ready")
             return
         }
@@ -80,7 +81,7 @@ final class RecordingCoordinator {
             } catch {
                 appLog.error("Failed to start capture: \(error.localizedDescription)")
                 AppErrorState.set("Microphone: \(error.localizedDescription)")
-                statusManager.setError()
+                statusManager.setTransientError()
             }
         }
     }
@@ -88,7 +89,7 @@ final class RecordingCoordinator {
     private static func handleCaptureError(_ error: AudioCaptureError, statusManager: StatusManager) {
         appLog.error("Capture error: \(error.localizedDescription)")
         AppErrorState.set(error.errorDescription ?? error.localizedDescription)
-        statusManager.setError()
+        statusManager.setTransientError()
         if case .noInputAvailable = error {
             Self.showNoMicrophoneAlert()
         }
@@ -118,7 +119,7 @@ final class RecordingCoordinator {
                 if let message = quality.userMessage {
                     audioLog.warning("\(message)")
                     AppErrorState.set(message)
-                    self?.statusManager?.setError()
+                    self?.statusManager?.setTransientError()
                 }
                 let duration = Double(samples.count) / AudioCaptureConstants.sampleRate
                 audioLog.info("Captured \(samples.count) samples (\(String(format: "%.2f", duration)) s)")
@@ -179,7 +180,7 @@ final class RecordingCoordinator {
                     errorLog.error("STT inference failed: \(error.localizedDescription)")
                     appLog.error("STT failed: \(error.localizedDescription)")
                     AppErrorState.set("Transcription: \(error.localizedDescription)")
-                    self.statusManager?.setError()
+                    self.statusManager?.setTransientError()
                     self.logDictationLatencyIfNeeded()
                 }
             }

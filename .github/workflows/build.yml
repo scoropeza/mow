@@ -80,6 +80,9 @@ jobs:
       - name: Patch FluidAudio (Swift 6 / macOS compatibility)
         run: DERIVED="$GITHUB_WORKSPACE/$BUILD_DIR" ./scripts/patch-fluidaudio.sh
 
+      - name: Patch LLM.swift (HuggingFace download regex fix)
+        run: DERIVED="$GITHUB_WORKSPACE/$BUILD_DIR" ./scripts/patch-llm-swift.sh
+
       # Build with ad-hoc signing only (no archive). SPM targets fail with "conflicting
       # provisioning settings" if CODE_SIGN_IDENTITY or DEVELOPMENT_TEAM are set.
       # We sign the app and DMG with Developer ID after the build when secrets exist.
