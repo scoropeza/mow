@@ -99,7 +99,8 @@ struct SettingsView: View {
                     }
                     .disabled(!textCleaningEnabled)
                 Text("Remove filler words (um, uh), repetitions, and false starts using ModernBERT. "
-                    + "Fast (~10ms), deterministic, never rephrases.")
+                    + "Fast (~10ms), deterministic, never rephrases. English only — automatically "
+                    + "skipped for other languages.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
 

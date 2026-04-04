@@ -8,6 +8,7 @@
 
 import CoreML
 import Foundation
+import NaturalLanguage
 import os
 
 /// Thread-safe holder for optional SLM reference (avoids NSLock from async contexts; Swift 6).
@@ -56,8 +57,8 @@ final class TextCleaningService: @unchecked Sendable {
 
         var text = trimmed
 
-        // Step 1: Disfluency classifier (deterministic, ~10ms)
-        if DisfluencySettings.isEnabled, disfluencyClassifier.isReady {
+        // Step 1: Disfluency classifier (deterministic, ~10ms, English only)
+        if DisfluencySettings.isEnabled, disfluencyClassifier.isReady, Self.isEnglish(text) {
             do {
                 text = try disfluencyClassifier.clean(text: text)
             } catch {
@@ -80,6 +81,15 @@ final class TextCleaningService: @unchecked Sendable {
     /// Sync clean: rule-based only (for callers that cannot await).
     func cleanSync(rawText: String) -> String {
         ruleBasedCleaner.clean(rawText: rawText.trimmingCharacters(in: .whitespacesAndNewlines))
+    }
+
+    /// Detect whether the input text is English using Apple's NaturalLanguage framework.
+    /// Returns true for English or when language can't be determined (safe default for short text).
+    private static func isEnglish(_ text: String) -> Bool {
+        let recognizer = NLLanguageRecognizer()
+        recognizer.processString(text)
+        guard let lang = recognizer.dominantLanguage else { return true }
+        return lang == .english
     }
 
     /// Attempt to load a CoreML text-cleaning model from ModelStorage.slmModelsURL. No-op if no model found.
