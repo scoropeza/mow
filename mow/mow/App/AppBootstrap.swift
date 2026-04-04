@@ -42,6 +42,11 @@ enum AppBootstrap {
         coordinator.setSpeechToTextService(modelManager.sttService)
         coordinator.setTextCleaningService(modelManager.textCleaningService)
         statusManager.setLoading()
+
+        // Load disfluency classifier in background (non-blocking)
+        Task {
+            await modelManager.textCleaningService.loadDisfluencyClassifier()
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             coordinator.startShortcutMonitor()
         }

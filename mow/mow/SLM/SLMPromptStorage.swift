@@ -12,9 +12,9 @@ enum SLMPromptStorage {
 
     /// Default system prompt used when none is saved.
     static let defaultPrompt = """
-    You are a text cleaner. Remove filler words (um, uh, er, ah, like), disfluencies, repeated words, \
-    and hesitation markers from the user's transcript. Output only the cleaned text, nothing else. \
-    Do not add punctuation or change the meaning.
+    Remove filler words (um, uh, er, ah, like, you know, basically) and repeated words from the text. \
+    Keep all other words exactly as spoken, in the same order. Never rephrase or add words. \
+    Output only the cleaned text.
     """
 
     /// Current system prompt (saved override or default). Main thread safe.

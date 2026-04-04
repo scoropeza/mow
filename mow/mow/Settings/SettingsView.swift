@@ -17,6 +17,8 @@ struct SettingsView: View {
     @State private var showMicResetHint: Bool = false
     @State private var accessibilityStatus: String = ""
     @State private var showDictationLatency: Bool = DictationLatencySettings.isEnabled
+    @State private var disfluencyEnabled: Bool = DisfluencySettings.isEnabled
+    @State private var slmEnhancementEnabled: Bool = SLMEnhancementSettings.isEnabled
 
     var body: some View {
         Form {
@@ -87,7 +89,26 @@ struct SettingsView: View {
                     .onChange(of: textCleaningEnabled) { _, new in
                         TextCleaningSettings.isEnabled = new
                     }
-                Text("When off, raw transcription is used without removing fillers or disfluencies.")
+                Text("Master switch for all post-processing. When off, raw transcription is used as-is.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+
+                Toggle("Disfluency removal", isOn: $disfluencyEnabled)
+                    .onChange(of: disfluencyEnabled) { _, new in
+                        DisfluencySettings.isEnabled = new
+                    }
+                    .disabled(!textCleaningEnabled)
+                Text("Remove filler words (um, uh), repetitions, and false starts using ModernBERT. "
+                    + "Fast (~10ms), deterministic, never rephrases.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+
+                Toggle("SLM text enhancement", isOn: $slmEnhancementEnabled)
+                    .onChange(of: slmEnhancementEnabled) { _, new in
+                        SLMEnhancementSettings.isEnabled = new
+                    }
+                    .disabled(!textCleaningEnabled)
+                Text("Additional cleaning via SmolLM2. Experimental — may rephrase text.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 Text("SLM system prompt (takes effect after app restart)")
@@ -128,6 +149,8 @@ struct SettingsView: View {
         .onAppear {
             slmPromptText = SLMPromptStorage.currentPrompt
             textCleaningEnabled = TextCleaningSettings.isEnabled
+            disfluencyEnabled = DisfluencySettings.isEnabled
+            slmEnhancementEnabled = SLMEnhancementSettings.isEnabled
             micStatus = MicrophonePermission.statusString()
             accessibilityStatus = AccessibilityPermission.isGranted ? "Granted" : "Not granted"
             showMicResetHint = false

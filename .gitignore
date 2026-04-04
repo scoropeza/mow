@@ -16,3 +16,9 @@ DerivedData/
 .DS_Store
 
 *.dmg
+
+# ML model files (downloaded on demand or via export script)
+*.onnx
+models/
+.venv-export/
+default.profraw

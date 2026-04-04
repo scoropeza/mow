@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		8484D3F92F80B19A003E4774 /* onnxruntime in Frameworks */ = {isa = PBXBuildFile; productRef = 8484D3F82F80B19A003E4774 /* onnxruntime */; };
+		8484D3FD2F80B1A7003E4774 /* Tokenizers in Frameworks */ = {isa = PBXBuildFile; productRef = 8484D3FC2F80B1A7003E4774 /* Tokenizers */; };
 		DD14F5AA2F4288E400ABB80C /* LLM in Frameworks */ = {isa = PBXBuildFile; productRef = DD14F5A82F4288E400ABB80C /* LLM */; };
 		DD14F5CC2F42A97C00ABB80C /* FluidAudio in Frameworks */ = {isa = PBXBuildFile; productRef = DD14F5A42F4288E300ABB80C /* FluidAudio */; };
 /* End PBXBuildFile section */
@@ -78,8 +80,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8484D3F92F80B19A003E4774 /* onnxruntime in Frameworks */,
 				DD14F5CC2F42A97C00ABB80C /* FluidAudio in Frameworks */,
 				DD14F5AA2F4288E400ABB80C /* LLM in Frameworks */,
+				8484D3FD2F80B1A7003E4774 /* Tokenizers in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,12 +104,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8484D3F72F80B17E003E4774 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DD14F56D2F4288E100ABB80C = {
 			isa = PBXGroup;
 			children = (
 				DD14F5782F4288E100ABB80C /* mow */,
 				DD14F5882F4288E300ABB80C /* mowTests */,
 				DD14F5922F4288E300ABB80C /* mowUITests */,
+				8484D3F72F80B17E003E4774 /* Frameworks */,
 				DD14F5772F4288E100ABB80C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -145,6 +157,8 @@
 			packageProductDependencies = (
 				DD14F5A42F4288E300ABB80C /* FluidAudio */,
 				DD14F5A82F4288E400ABB80C /* LLM */,
+				8484D3F82F80B19A003E4774 /* onnxruntime */,
+				8484D3FC2F80B1A7003E4774 /* Tokenizers */,
 			);
 			productName = mow;
 			productReference = DD14F5762F4288E100ABB80C /* Mow.app */;
@@ -234,6 +248,8 @@
 			packageReferences = (
 				DD14F5A22F4288E300ABB80C /* XCRemoteSwiftPackageReference "FluidAudio" */,
 				DD14F5A62F4288E400ABB80C /* XCRemoteSwiftPackageReference "LLM" */,
+				8484D3F52F80B091003E4774 /* XCRemoteSwiftPackageReference "onnxruntime-swift-package-manager" */,
+				8484D3F62F80B0C6003E4774 /* XCRemoteSwiftPackageReference "swift-transformers" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DD14F5772F4288E100ABB80C /* Products */;
@@ -713,6 +729,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8484D3F52F80B091003E4774 /* XCRemoteSwiftPackageReference "onnxruntime-swift-package-manager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/microsoft/onnxruntime-swift-package-manager";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.24.2;
+			};
+		};
+		8484D3F62F80B0C6003E4774 /* XCRemoteSwiftPackageReference "swift-transformers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/huggingface/swift-transformers";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.0;
+			};
+		};
 		DD14F5A22F4288E300ABB80C /* XCRemoteSwiftPackageReference "FluidAudio" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/FluidInference/FluidAudio.git";
@@ -732,6 +764,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8484D3F82F80B19A003E4774 /* onnxruntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8484D3F52F80B091003E4774 /* XCRemoteSwiftPackageReference "onnxruntime-swift-package-manager" */;
+			productName = onnxruntime;
+		};
+		8484D3FC2F80B1A7003E4774 /* Tokenizers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8484D3F62F80B0C6003E4774 /* XCRemoteSwiftPackageReference "swift-transformers" */;
+			productName = Tokenizers;
+		};
 		DD14F5A42F4288E300ABB80C /* FluidAudio */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DD14F5A22F4288E300ABB80C /* XCRemoteSwiftPackageReference "FluidAudio" */;

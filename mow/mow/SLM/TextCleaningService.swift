@@ -17,15 +17,29 @@ private actor TextCleaningSLMHolder {
     func get() -> SLMLLMService? { slm }
 }
 
-/// Service that cleans raw transcription text. Uses LLM (Hugging Face) when loaded, else rule-based.
+/// Service that cleans raw transcription text. Pipeline:
+/// 1. Disfluency classifier (ModernBERT, if enabled) — tags and removes fillers/repetitions
+/// 2. SLM enhancement (SmolLM2, if enabled) — context-aware cleaning
+/// 3. Rule-based cleaner — catches remaining fillers and normalizes whitespace
 final class TextCleaningService: @unchecked Sendable {
     private let ruleBasedCleaner = RuleBasedTextCleaner()
     private var coreMLCleaner: CoreMLTextCleaner?
     private let slmHolder = TextCleaningSLMHolder()
+    private let disfluencyClassifier = DisfluencyClassifier()
     private let lock = NSLock()
 
     init() {
         loadCoreMLModelIfAvailable()
+    }
+
+    /// Load the disfluency classifier model. Call once at startup.
+    func loadDisfluencyClassifier() async {
+        do {
+            try await disfluencyClassifier.load()
+            modelLog.info("Disfluency classifier ready")
+        } catch {
+            modelLog.warning("Disfluency classifier failed to load: \(error.localizedDescription)")
+        }
     }
 
     /// Set the LLM-based SLM (from ModelManager after load). Use for 6.2 pipeline.
@@ -33,19 +47,34 @@ final class TextCleaningService: @unchecked Sendable {
         Task { await slmHolder.set(service) }
     }
 
-    /// Clean raw STT output (async): when enabled, LLM if loaded then rule-based, else rule-based only.
-    /// When disabled (6.6), returns raw text as-is.
+    /// Clean raw STT output (async). Pipeline: disfluency classifier → SLM → rule-based.
+    /// Each step runs only if its toggle is enabled in Settings.
     func clean(rawText: String) async -> String {
         let trimmed = rawText.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return trimmed }
         guard TextCleaningSettings.isEnabled else { return trimmed }
 
-        guard let llm = await slmHolder.get(),
-              await llm.isReady,
-              let cleaned = await llm.clean(rawText: trimmed) else {
-            return ruleBasedCleaner.clean(rawText: trimmed)
+        var text = trimmed
+
+        // Step 1: Disfluency classifier (deterministic, ~10ms)
+        if DisfluencySettings.isEnabled, disfluencyClassifier.isReady {
+            do {
+                text = try disfluencyClassifier.clean(text: text)
+            } catch {
+                modelLog.warning("Disfluency classifier error: \(error.localizedDescription)")
+            }
         }
-        return ruleBasedCleaner.clean(rawText: cleaned)
+
+        // Step 2: SLM enhancement (optional, ~500ms)
+        if SLMEnhancementSettings.isEnabled,
+           let llm = await slmHolder.get(),
+           await llm.isReady,
+           let slmCleaned = await llm.clean(rawText: text) {
+            text = slmCleaned
+        }
+
+        // Step 3: Rule-based cleanup (always, <5ms)
+        return ruleBasedCleaner.clean(rawText: text)
     }
 
     /// Sync clean: rule-based only (for callers that cannot await).
